@@ -102,6 +102,12 @@ file_size_in_bytes  = int(dict(meta.items())['Content-Length'])
 
 # Todo: Add port info depending on the scheme
 print("* Connecting to {} ({})".format(host, host_ip))
+
+# Todo: Add sending metadata info
+if winloadr.verbose:
+    for header, header_value in dict(meta.items()).items():
+        print('<', header + ':', header_value)
+
 print("Downloading: %s Bytes: %i" % (default_output_file, file_size_in_bytes))
 
 try:

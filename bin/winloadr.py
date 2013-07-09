@@ -32,18 +32,21 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument(
     '-o',
+    '--output-file',
     dest='outputfile',
     help='name of the downloaded file, defaults to the remote file'
 )
 
 parser.add_argument(
     '-r',
+    '--remote-file',
     dest='remotefile',
     help='URL of the file to download'
 )
 
 parser.add_argument(
     '-b',
+    '--block-size',
     dest='block_size',
     type=int,
     default=8192,
@@ -53,6 +56,7 @@ parser.add_argument(
 
 parser.add_argument(
     '-t',
+    '--time-to-update',
     dest='time_to_update',
     type=float,
     default=1.0,

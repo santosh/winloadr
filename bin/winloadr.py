@@ -17,6 +17,7 @@ import os
 import argparse
 import time
 import socket
+import platform
 from urllib.parse import urlparse
 try:
     from urllib2 import urlopen
@@ -56,6 +57,30 @@ parser.add_argument(
     type=float,
     default=1.0,
     help='no. of secs to update the screen for updates'
+)
+
+parser.add_argument(
+    '-v',
+    '--verbose',
+    dest='verbose',
+    type=bool,
+    default=False,
+    help='shows the meta data send and received if true'
+)
+
+parser.add_argument(
+    '-u',
+    '--user-agent',
+    dest='user_agent',
+    type=str,
+    default='winloadr/{} {}'.format(platform.system(), platform.machine()),
+    help='user agent to be sent to the server'
+)
+
+parser.add_argument(
+    '--version',
+    action='version',
+    version='%(prog)s 1.00.00'
 )
 
 winloadr = parser.parse_args()

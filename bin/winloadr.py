@@ -87,6 +87,7 @@ try:
             print(status, end="\r")
             time.sleep(winloadr.time_to_update)
 except KeyboardInterrupt:
+    print(status)
     sys.exit(0)
 # Todo
 # Add HTTPError exception

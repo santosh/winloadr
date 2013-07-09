@@ -23,8 +23,8 @@ except ImportError:
 
 # {{ Argument parser
 parser = argparse.ArgumentParser(
-    prog='downloader',
-    description='a featureful downloader'
+    prog='winloadr',
+    description='winloadr is a simple command line download manager for Windows'
 )
 
 parser.add_argument(
@@ -56,17 +56,17 @@ parser.add_argument(
     help='no. of secs to update the screen for updates'
 )
 
-downloader = parser.parse_args()
+winloadr = parser.parse_args()
 # }}
 
 # {{ default local filename
-if downloader.outputfile:
-    default_output_file = downloader.outputfile
+if winloadr.outputfile:
+    default_output_file = winloadr.outputfile
 else:
-    default_output_file = os.path.split(downloader.remotefile)[-1]
+    default_output_file = os.path.split(winloadr.remotefile)[-1]
 # }}
 
-u = urlopen(downloader.remotefile)
+u = urlopen(winloadr.remotefile)
 meta = u.info()
 file_size_in_bytes  = int(dict(meta.items())['Content-Length'])
 print("Downloading: %s Bytes: %i" % (default_output_file, file_size_in_bytes))
@@ -85,7 +85,7 @@ try:
             status = r"%10d KB [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size_in_bytes)
             status = status + chr(8)*(len(status)+1)
             print(status, end="\r")
-            time.sleep(downloader.time_to_update)
+            time.sleep(winloadr.time_to_update)
 except KeyboardInterrupt:
     sys.exit(0)
 # Todo

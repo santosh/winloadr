@@ -16,6 +16,8 @@ import sys
 import os
 import argparse
 import time
+import socket
+from urllib.parse import urlparse
 try:
     from urllib2 import urlopen
 except ImportError:
@@ -66,9 +68,15 @@ else:
     default_output_file = os.path.split(winloadr.remotefile)[-1]
 # }}
 
+host = urlparse(winloadr.remotefile).netloc
+host_ip = socket.gethostbyname(host)
+
 u = urlopen(winloadr.remotefile)
 meta = u.info()
 file_size_in_bytes  = int(dict(meta.items())['Content-Length'])
+
+# Todo: Add port info depending on the scheme
+print("* Connecting to {} ({})".format(host, host_ip))
 print("Downloading: %s Bytes: %i" % (default_output_file, file_size_in_bytes))
 
 try:
